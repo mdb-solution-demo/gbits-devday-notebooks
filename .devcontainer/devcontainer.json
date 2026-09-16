@@ -11,8 +11,10 @@
         "cpus": 4
     },
     "containerEnv": {
-        "PROXY_ENDPOINT": "https://vtqjvgchmwcjwsrela2oyhlegu0hwqnw.lambda-url.us-west-2.on.aws/",
         "MONGODB_URI": "mongodb://admin:mongodb@mongodb:27017/",
+        "MONGODB_DATABASE": "gbits_db_01",
+
+        "PROXY_ENDPOINT": "https://vtqjvgchmwcjwsrela2oyhlegu0hwqnw.lambda-url.us-west-2.on.aws/",
         "HF_HOME": "/tmp/huggingface"
     },
     "postCreateCommand": "pip install -r requirements.txt",
