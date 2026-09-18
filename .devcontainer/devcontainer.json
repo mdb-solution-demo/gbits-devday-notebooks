@@ -1,23 +1,18 @@
 {
     "name": "GenAI Jupyter Notebooks with MongoDB",
-    "dockerComposeFile": "docker-compose.yml",
-    "service": "lab-runner",
+    "image": "jupyter/base-notebook@sha256:8c903974902b0e9d45d9823c2234411de0614c5c98c4bb782b3d4f55b3e435e6",
     "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
     "forwardPorts": [
-        8888,
-        27017
+        8888
     ],
     "hostRequirements": {
         "cpus": 4
     },
     "containerEnv": {
-        "MONGODB_URI": "mongodb://admin:mongodb@mongodb:27017/",
-        "MONGODB_DATABASE": "gbits_db_01",
-
         "PROXY_ENDPOINT": "https://vtqjvgchmwcjwsrela2oyhlegu0hwqnw.lambda-url.us-west-2.on.aws/",
         "HF_HOME": "/tmp/huggingface"
     },
-    "postCreateCommand": "pip install -r requirements.txt",
+    "postCreateCommand": "python3 -m venv .venv && .venv/bin/python -m pip install --disable-pip-version-check --prefer-binary --no-cache-dir -r requirements.txt && .venv/bin/python -m ipykernel install --user --name gbits-devday --display-name 'Python (gbits-devday)'",
     "customizations": {
         "codespaces": {
             "openFiles": []
@@ -25,8 +20,7 @@
         "vscode": {
             "extensions": [
                 "ms-python.python",
-                "ms-toolsai.jupyter",
-                "mongodb.mongodb-vscode"
+                "ms-toolsai.jupyter"
             ]
         }
     }
