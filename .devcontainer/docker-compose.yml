@@ -3,17 +3,13 @@ services:
     image: jupyter/base-notebook:latest
     volumes:
       - ../..:/workspaces:cached
-    depends_on:
-      - mongodb
     user: "1000:100"
 
     # Overrides default command so things don't shut down after the process ends.
     command: sleep infinity
 
-    # Runs app on the same network as the database container, allows "forwardPorts" in devcontainer.json function.
-    network_mode: service:mongodb
-
   mongodb:
+    profiles: ["local-mongodb"]
     image: mongodb/mongodb-atlas-local:latest
     restart: unless-stopped
     volumes:
